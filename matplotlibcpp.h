@@ -1600,7 +1600,7 @@ inline void figure_size(size_t w, size_t h, long number = -1)
     PyDict_SetItemString(kwargs, "figsize", size);
     PyDict_SetItemString(kwargs, "dpi", PyLong_FromSize_t(dpi));
 
-    if (number == -1){
+    if (number > -1){
         PyDict_SetItemString(kwargs, "num", PyLong_FromLong(number));
     }
 
