@@ -1587,7 +1587,7 @@ inline bool fignum_exists(long number)
     return ret;
 }
 
-inline void figure_size(size_t w, size_t h)
+inline void figure_size(size_t w, size_t h, long number = -1)
 {
     detail::_interpreter::get();
 
@@ -1599,6 +1599,10 @@ inline void figure_size(size_t w, size_t h)
     PyObject* kwargs = PyDict_New();
     PyDict_SetItemString(kwargs, "figsize", size);
     PyDict_SetItemString(kwargs, "dpi", PyLong_FromSize_t(dpi));
+
+    if (number == -1){
+        PyDict_SetItemString(kwargs, "num", number);
+    }
 
     PyObject* res = PyObject_Call(detail::_interpreter::get().s_python_function_figure,
             detail::_interpreter::get().s_python_empty_tuple, kwargs);
